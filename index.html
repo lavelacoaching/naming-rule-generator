@@ -58,6 +58,39 @@
     margin-bottom: 20px;
   }
 
+  .input-prefix-wrap {
+    display: flex;
+    align-items: center;
+    background: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: border-color 0.2s, box-shadow 0.2s;
+  }
+
+  .input-prefix-wrap:focus-within {
+    border-color: #c9a84c;
+    box-shadow: 0 0 0 3px rgba(201,168,76,0.15);
+  }
+
+  .input-prefix-wrap .prefix {
+    padding: 12px 10px 12px 14px;
+    color: #1a1a2e;
+    font-weight: 700;
+    font-size: 0.95rem;
+    white-space: nowrap;
+    user-select: none;
+  }
+
+  .input-prefix-wrap input {
+    border: none !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding-left: 2px;
+    flex: 1;
+    background: transparent;
+  }
+
   label {
     display: block;
     color: rgba(0,0,0,0.65);
@@ -243,7 +276,7 @@
 
   <div class="form-group">
     <label>MG名<span class="required">*</span></label>
-    <input type="text" id="mg" placeholder="例: ふうか">
+    <div class="input-prefix-wrap"><span class="prefix">MG</span><input type="text" id="mg" placeholder="ふうか"></div>
     <div class="error-msg" id="err-mg">MG名を入力してください</div>
   </div>
 
@@ -329,7 +362,7 @@
     // 日付フォーマット YYYYMMDD
     const dateStr = dateVal.replace(/-/g, '');
 
-    const result = `${mg}_${student}_${course}_${dateStr}_${countVal}`;
+    const result = `MG${mg}_${student}_${course}_${dateStr}_${countVal}`;
 
     document.getElementById('result-text').textContent = result;
     document.getElementById('result-area').classList.add('visible');
